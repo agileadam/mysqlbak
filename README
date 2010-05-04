@@ -1,3 +1,10 @@
-This script is a work in progress, but has been very effective.
-
 Execute the script with the --help switch for brief usage instructions.
+
+DISCLAIMER:
+  Please be careful with this script! Though it has performed very well, it is still a work in progress.
+  Practice using this script on a "test" database first!
+
+NOTES:
+  Use the SSH options if possible! Not only will this secure the connection, this will speed up transfers considerably.
+  Note that, at present, only remote backups and imports function over SSH.
+  I have not yet programmed 'export' mode to function within an SSH tunnel.
