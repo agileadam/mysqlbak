@@ -118,6 +118,14 @@ updateDatabase(){
 		createSQL "remote"
 	fi
 
+	# drop all tables in the database
+	(
+	set -o pipefail
+	mysqldump -u ${dbuser} --password="${dbpass}" -h "${host}" --add-drop-table --no-data \
+	${db} | grep ^DROP | mysql -u ${dbuser} --password="${dbpass}" -h "${host}" \
+	-D ${db} || errorCheck "  Could not drop all tables from database ${db};\n  database may contain leftover tables!"
+	)
+
 	# import the data
 	mysql -u ${dbuser} --password="${dbpass}" -h "${host}" -D \
 	${db} < "${sqlForImport}" || errorCheck "  Could not update database ${db} on ${host}"
